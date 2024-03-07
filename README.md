@@ -3,7 +3,7 @@ Ziyang Luo, Nian Liu, Wangbo Zhao, Xuguang Yang, Dingwen Zhang, Deng-Ping Fan, F
 
 **Approach**: [[arxiv Paper]](https://arxiv.org/pdf/2311.15011.pdf)
 
-<img src="https://github.com/Sssssuperior/VSCode/blob/main/task_relation.png" width="300"/><img src="https://github.com/Sssssuperior/VSCode/blob/main/network.png" width="300"/>
+<img src="https://github.com/Sssssuperior/VSCode/blob/main/task_relation.png" width="400"/><img src="https://github.com/Sssssuperior/VSCode/blob/main/network.png" width="400"/>
 
 ## 🎃 Overview
 We introduce VSCode, a generalist model with novel 2D prompt learning, to jointly address four SOD tasks and three COD tasks. We utilize VST as the foundation model and introduce 2D prompts within the encoder-decoder architecture to learn domain and task-specific knowledge on two separate dimensions. A prompt discrimination loss helps disentangle peculiarities to benefit model optimization. VSCode outperforms state-of-the-art methods across six tasks on 26 datasets and exhibits zero-shot generalization to unseen tasks by combining 2D prompts, such as RGB-D COD.
@@ -21,16 +21,16 @@ For RGB SOD and RGB-D SOD, we employ the following datasets to train our model c
 For testing the RGB SOD task, we use **DUTS**, **ECSSD**, **HKU-IS**, **PASCAL-S**, **DUT-O**, and **SOD**, while **STERE**, **NJUD**, **NLPR**, **DUTLF-Depth**, **SIP**, and **ReDWeb-S** datasets are employed for testing the RGB-D SOD task. You can directly download these datasets by following [[VST]](https://github.com/nnizhang/VST?tab=readme-ov-file).
 
 ### 2. RGB-T SOD
-We employ the training set of **VT5000** to train our model, and **VT821**, **VT1000**, and the testing of **VT5000** are utilized for testing. Please download the corresponding contour maps from [[baidu](),PIN:] for VT5000 and place them into the RGBT folder.
+We employ the training set of **VT5000** to train our model, and **VT821**, **VT1000**, and the testing of **VT5000** are utilized for testing (from [link](https://chenglongli.cn/code-dataset/)). Please download the corresponding contour maps from [[baidu](),PIN:] for VT5000 and place them into the `RGBT` folder.
 
 ### 3. VSOD
-For VSOD, we employ six widely used benchmark datasets: **DAVIS**, **FBMS**, **ViSal**, **SegV2**, **DAVSOD-Easy**, and **DAVSOD-Normal**. Please download corresponding contour maps from [[baidu](),PIN:] for DAVIS and DAVSOD, and put it into `Video` folder. For VSOD and VCOD tasks, we follow the common practice of utilizing [Flownet2.0](https://github.com/NVIDIA/flownet2-pytorch) as the optical flow extractor due to its consistently strong performance.
+For VSOD, we employ six widely used benchmark datasets: **DAVIS**, **FBMS**, **ViSal**, **SegV2**, **DAVSOD-Easy**, and **DAVSOD-Normal** (from [link](https://github.com/DengPingFan/DAVSOD)). Please download corresponding contour maps from [[baidu](https://pan.baidu.com/s/1qvIduyt6A8fYlwIQJLj8Jw),PIN:o7r0] and [[baidu[(),PIN:] for DAVIS and DAVSOD, and put it into `Video` folder. For VSOD and VCOD tasks, we follow the common practice of utilizing [Flownet2.0](https://github.com/NVIDIA/flownet2-pytorch) as the optical flow extractor due to its consistently strong performance.
 
 ### 4. RGB COD
-Regarding RGB COD, three extensive benchmark datasets are considered, including **COD10K**, **CAMO**, and **NC4K**. Please download the corresponding contour maps from [[baidu](),PIN:] for COD10K and CAMO, and put it into `COD/rgb/` folder.
+Regarding RGB COD, three extensive benchmark datasets are considered, including [**COD10K**](https://github.com/DengPingFan/SINet/), **CAMO**, and [**NC4K**](https://github.com/JingZhang617/COD-Rank-Localize-and-Segment). Please download the corresponding contour maps from [[baidu](),PIN:] for COD10K and CAMO, and put it into `COD/rgb/` folder.
 
 ### 5. VCOD
-For VCOD, we utilize two widely accepted benchmark datasets: CAD and MoCA-Mask. Please download the corresponding contour maps from [[baidu](),PIN:] for MoCA-Mask, and put it into `COD/rgbv/` folder.
+For VCOD, we utilize two widely accepted benchmark datasets: **CAD** and **MoCA-Mask** (from [link](https://github.com/XuelianCheng/SLT-Net)). Please download the corresponding contour maps from [[baidu](),PIN:] for MoCA-Mask, and put it into `COD/rgbv/` folder.
 
 ------
 The total dataset folder should like this:
@@ -116,19 +116,19 @@ The total dataset folder should like this:
 ## 🎃 Experiments
 Run `python train_test_eval.py --Training True --Testing True --Evaluation True` for training, testing, and evaluation which is similar to VST.
 
-Please be aware that our evaluation tool may exhibit some differences from Zhao Zhang for VSOD, as certain ground truth maps may not be binarized. 
+Please be aware that our evaluation tool may exhibit some differences from [Zhao Zhang](https://github.com/zzhanghub/eval-co-sod) for VSOD, as certain ground truth maps may not be binarized. 
 
 ## 🎃 Results
 
 ### 1. Model Zoo
 | Name | Backbone | Params | Weight |
 |  :---: |  :---:    | :---:   |  :---:   |
-| VSCode-T |  Swin-T    |  54.09   |     |
-| VSCode-S |  Swin-S    |  74.72   |     |
-| VSCode-B |  Swin-B    |  117.41  |     |
+| VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/1GpGHG0z8WnzEwxi9HtnONw?pwd=97ij),PIN:97ij]   |
+| VSCode-S |  Swin-S    |  74.72   |  [[baidu](https://pan.baidu.com/s/1OjRFAG7rdiUVwz3nK69Y3g?pwd=8jig),PIN:8jig]  |
+| VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]    |
 
 ### 2. Saliency map
-Due to the dataset's size, we only offer the saliency map of VSCode-T at this time [[baidu](),PIN:].
+Due to the dataset's size, we only offer the saliency map of **VSCode-T** [[baidu](https://pan.baidu.com/s/1Za2q554fRoUCmsAYVWveIw?pwd=ywau),PIN:ywau] and **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5] at this time.
 
 ## 🎃 Citation
 If you use VSCode in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
