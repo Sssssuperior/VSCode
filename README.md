@@ -128,7 +128,7 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 | VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]    |
 
 ### 2. Saliency map
-Due to the dataset's size, we only offer the saliency map of **VSCode-T** [[baidu](https://pan.baidu.com/s/1Za2q554fRoUCmsAYVWveIw?pwd=ywau),PIN:ywau] and **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5] at this time.
+Due to the dataset's size, we only offer the saliency map of **VSCode-T** [[baidu]()] and **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5] at this time.
 
 ## 🎃 Citation
 If you use VSCode in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
