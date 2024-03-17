@@ -5,9 +5,11 @@ import transforms as trans
 from torchvision import transforms
 import random
 
+import collections
+
+collections.Iterable = collections.abc.Iterable
 
 def load_list(dataset_list, data_root):
-
     images = []
     depths = []
     labels = []
@@ -22,10 +24,10 @@ def load_list(dataset_list, data_root):
         depth_files = os.listdir(depth_root)
 
         for depth in depth_files:
-            images.append(depth_root.replace('/depth/', '/RGB/') + depth[:-4]+'.jpg')
+            images.append(depth_root.replace('/depth/', '/RGB/') + depth[:-4] + '.jpg')
             depths.append(depth_root + depth)
-            labels.append(depth_root.replace('/depth/', '/GT/') + depth[:-4]+'.png')
-            contours.append(depth_root.replace('/depth/', '/contour/') + depth[:-4]+'.png')
+            labels.append(depth_root.replace('/depth/', '/GT/') + depth[:-4] + '.png')
+            contours.append(depth_root.replace('/depth/', '/contour/') + depth[:-4] + '.png')
 
     for dataset_name in dataset_listT:
 
@@ -52,7 +54,6 @@ def load_list(dataset_list, data_root):
 
 
 def load_test_list(test_path, data_root, task):
-
     images = []
     depths = []
 
@@ -79,7 +80,7 @@ def load_test_list(test_path, data_root, task):
         for depth in depth_files:
             images.append(depth_root.replace('/T/', '/RGB/') + depth[:-4] + '.jpg')
             depths.append(depth_root + depth)
-    
+
     elif task == 'RGB':
         if 'DUTS' in test_path:
             img_root = data_root + test_path + '/DUTS-TE-Image/'
@@ -93,7 +94,32 @@ def load_test_list(test_path, data_root, task):
             ext = '.jpg'
         for img in img_files:
             images.append(img_root + img[:-4] + ext)
-            
+
+    elif task == 'CODRGB':
+        img_root = data_root.replace('/Train/', '/Test/') + test_path + '/RGB/'
+        img_files = os.listdir(img_root)
+
+        for img in img_files:
+            images.append(img_root + img[:-4] + '.jpg')
+
+    elif task == 'CODRGBV':
+        depth_root = (data_root + test_path).replace('/Train/', '/Test/')
+        files = os.listdir(depth_root)
+
+        for file in files:
+            if 'MoCA_Mask' in test_path:
+                depth_roott = depth_root + '/' + file + '/Flow/'
+                depth_files = os.listdir(depth_roott)
+                for depth in depth_files:
+                    images.append(depth_roott.replace('/Flow/', '/Imgs/') + depth[:-4] + '.jpg')
+                    depths.append(depth_roott + depth)
+            else:
+                depth_roott = depth_root + '/' + file + '/Flow/'
+                depth_files = os.listdir(depth_roott)
+                for depth in depth_files:
+                    images.append(depth_roott.replace('/Flow/', '/frames/') + depth[:-4] + '.png')
+                    depths.append(depth_roott + depth)
+
     else:
         depth_root = (data_root + test_path).replace('/Train/', '/Test/')
         files = os.listdir(depth_root)
@@ -106,12 +132,14 @@ def load_test_list(test_path, data_root, task):
                 images.append(depth_roott.replace('/OF_FlowNet2/', '/Frame/') + depth[:-4] + '.jpg')
                 depths.append(depth_roott + depth)
 
-
     return images, depths
 
 
 class ImageData(data.Dataset):
-    def __init__(self, dataset_list, data_root, transform_RGB, transformdepth_RGB, transform_depth, transformthermal_RGB, transform_thermal, transformvideo_RGB, transform_video, mode, task=None, img_size=None, scale_size=None, t_transform=None, label_14_transform=None, label_28_transform=None, label_56_transform=None, label_112_transform=None):
+    def __init__(self, dataset_list, data_root, transform_RGB, transformCOD_RGB, transformCOD_RGBV, transformCOD_video,
+                 transformdepth_RGB, transform_depth, transformthermal_RGB, transform_thermal, transformvideo_RGB,
+                 transform_video, mode, task=None, img_size=None, scale_size=None, t_transform=None,
+                 label_14_transform=None, label_28_transform=None, label_56_transform=None, label_112_transform=None):
 
         if mode == 'train':
             self.image_path, self.depth_path, self.label_path, self.contour_path = load_list(dataset_list, data_root)
@@ -119,6 +147,9 @@ class ImageData(data.Dataset):
             self.image_path, self.depth_path = load_test_list(dataset_list, data_root, task)
 
         self.transform_RGB = transform_RGB
+        self.transformCOD_RGB = transformCOD_RGB
+        self.transformCOD_RGBV = transformCOD_RGBV
+        self.transformCOD_video = transformCOD_video
         self.transformdepth_RGB = transformdepth_RGB
         self.transform_depth = transform_depth
         self.transformthermal_RGB = transformthermal_RGB
@@ -135,7 +166,6 @@ class ImageData(data.Dataset):
         self.scale_size = scale_size
         self.task = task
 
-
     def __getitem__(self, item):
         fn = self.image_path[item].split('/')
 
@@ -143,8 +173,8 @@ class ImageData(data.Dataset):
         image = Image.open(self.image_path[item]).convert('RGB')
         image_w, image_h = int(image.size[0]), int(image.size[1])
 
-        if self.task == "RGB":
-            depth = Image.new('RGB', (image_w, image_h), (0,0,0))
+        if self.task == "RGB" or self.task == "CODRGB":
+            depth = Image.new('RGB', (image_w, image_h), (0, 0, 0))
         else:
             depth = Image.open(self.depth_path[item]).convert('RGB')
 
@@ -153,7 +183,6 @@ class ImageData(data.Dataset):
             label = Image.open(self.label_path[item]).convert('L')
             contour = Image.open(self.contour_path[item]).convert('L')
             random_size = self.scale_size
-
 
             new_img = trans.Scale((random_size, random_size))(image)
             new_depth = trans.Scale((random_size, random_size))(depth)
@@ -193,7 +222,7 @@ class ImageData(data.Dataset):
             contour_224 = self.t_transform(new_contour)
 
             return new_img, new_depth, label_224, label_14, label_28, label_56, label_112, \
-                   contour_224, contour_14, contour_28, contour_56, contour_112
+                contour_224, contour_14, contour_28, contour_56, contour_112
 
         else:
             if self.task == "RGBD":
@@ -205,6 +234,12 @@ class ImageData(data.Dataset):
             elif self.task == "RGB":
                 new_img = self.transform_RGB(image)
                 new_depth = self.transform_depth(depth)
+            elif self.task == "CODRGB":
+                new_img = self.transformCOD_RGB(image)
+                new_depth = self.transform_depth(depth)
+            elif self.task == "CODRGBV":
+                new_img = self.transformCOD_RGBV(image)
+                new_depth = self.transformCOD_video(depth)
             else:
                 new_img = self.transformvideo_RGB(image)
                 new_depth = self.transform_video(depth)
@@ -216,32 +251,36 @@ class ImageData(data.Dataset):
 
 
 def get_loader(dataset_list, data_root, img_size, mode='train', task=None):
-
     if mode == 'train':
 
         transformdepth_RGB = trans.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize([0.445, 0.425, 0.397], [0.209, 0.205, 0.204]),
+            transforms.ToTensor(),
+            transforms.Normalize([0.445, 0.425, 0.397], [0.209, 0.205, 0.204]),
+        ])
+
+        transformCOD_RGB = trans.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize([0.447, 0.443, 0.364], [0.192, 0.185, 0.180]),
         ])
 
         transform_depth = trans.Compose([
             transforms.ToTensor(),
             transforms.Normalize([0.507, 0.507, 0.507], [0.232, 0.232, 0.232]),
         ])
-        
+
         transformtherml_RGB = trans.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize([0.532, 0.619, 0.552], [0.187, 0.170, 0.181]),
+            transforms.ToTensor(),
+            transforms.Normalize([0.532, 0.619, 0.552], [0.187, 0.170, 0.181]),
         ])
 
         transform_thermal = trans.Compose([
             transforms.ToTensor(),
             transforms.Normalize([0.754, 0.361, 0.342], [0.180, 0.210, 0.171]),
         ])
-        
+
         transformvideo_RGB = trans.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize([0.449, 0.456, 0.427], [0.203, 0.180, 0.196]),
+            transforms.ToTensor(),
+            transforms.Normalize([0.449, 0.456, 0.427], [0.203, 0.180, 0.196]),
         ])
 
         transform_video = trans.Compose([
@@ -257,15 +296,15 @@ def get_loader(dataset_list, data_root, img_size, mode='train', task=None):
             transforms.ToTensor(),
         ])
         label_28_transform = trans.Compose([
-            trans.Scale((img_size//8, img_size//8), interpolation=Image.NEAREST),
+            trans.Scale((img_size // 8, img_size // 8), interpolation=Image.NEAREST),
             transforms.ToTensor(),
         ])
         label_56_transform = trans.Compose([
-            trans.Scale((img_size//4, img_size//4), interpolation=Image.NEAREST),
+            trans.Scale((img_size // 4, img_size // 4), interpolation=Image.NEAREST),
             transforms.ToTensor(),
         ])
         label_112_transform = trans.Compose([
-            trans.Scale((img_size//2, img_size//2), interpolation=Image.NEAREST),
+            trans.Scale((img_size // 2, img_size // 2), interpolation=Image.NEAREST),
             transforms.ToTensor(),
         ])
         scale_size = 256
@@ -276,10 +315,26 @@ def get_loader(dataset_list, data_root, img_size, mode='train', task=None):
             transforms.Normalize([0.492, 0.463, 0.298], [0.222, 0.219, 0.225]),
         ])
 
+        transformCOD_RGB = trans.Compose([
+            trans.Scale((img_size, img_size)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.447, 0.443, 0.364], [0.192, 0.185, 0.180]),
+        ])
+        transformCOD_RGBV = trans.Compose([
+            trans.Scale((img_size, img_size)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.437, 0.476, 0.427], [0.159, 0.157, 0.162]),
+        ])
+
+        transformCOD_video = trans.Compose([
+            trans.Scale((img_size, img_size)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.763, 0.763, 0.805], [0.114, 0.102, 0.099]),
+        ])
         transformdepth_RGB = trans.Compose([
-                trans.Scale((img_size, img_size)),
-                transforms.ToTensor(),
-                transforms.Normalize([0.445, 0.425, 0.397], [0.209, 0.205, 0.204]),
+            trans.Scale((img_size, img_size)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.445, 0.425, 0.397], [0.209, 0.205, 0.204]),
         ])
 
         transform_depth = trans.Compose([
@@ -287,11 +342,11 @@ def get_loader(dataset_list, data_root, img_size, mode='train', task=None):
             transforms.ToTensor(),
             transforms.Normalize([0.507, 0.507, 0.507], [0.232, 0.232, 0.232]),
         ])
-        
+
         transformtherml_RGB = trans.Compose([
-                trans.Scale((img_size, img_size)),
-                transforms.ToTensor(),
-                transforms.Normalize([0.532, 0.619, 0.552], [0.187, 0.170, 0.181]),
+            trans.Scale((img_size, img_size)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.532, 0.619, 0.552], [0.187, 0.170, 0.181]),
         ])
 
         transform_thermal = trans.Compose([
@@ -299,26 +354,28 @@ def get_loader(dataset_list, data_root, img_size, mode='train', task=None):
             transforms.ToTensor(),
             transforms.Normalize([0.754, 0.361, 0.342], [0.180, 0.210, 0.171]),
         ])
-        
+
         transformvideo_RGB = trans.Compose([
-                trans.Scale((img_size, img_size)),
-                transforms.ToTensor(),
-                transforms.Normalize([0.432, 0.404, 0.366], [0.241, 0.230, 0.230]),
+            trans.Scale((img_size, img_size)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.432, 0.404, 0.366], [0.241, 0.230, 0.230]),
         ])
 
         transform_video = trans.Compose([
             trans.Scale((img_size, img_size)),
             transforms.ToTensor(),
-           transforms.Normalize([0.866, 0.832, 0.817], [0.100, 0.102, 0.113]),
+            transforms.Normalize([0.866, 0.832, 0.817], [0.100, 0.102, 0.113]),
         ])
 
     if mode == 'train':
-        dataset = ImageData(dataset_list, data_root, transform_RGB, transformdepth_RGB, transform_depth, transformtherml_RGB,
+        dataset = ImageData(dataset_list, data_root, transform_RGB, transformCOD_RGB, transformCOD_RGBV,
+                            transformCOD_video, transformdepth_RGB, transform_depth, transformtherml_RGB,
                             transform_thermal, transformvideo_RGB, transform_video, mode, task, img_size, scale_size,
                             t_transform, label_14_transform, label_28_transform, label_56_transform,
                             label_112_transform)
     else:
-        dataset = ImageData(dataset_list, data_root, transform_RGB, transformdepth_RGB, transform_depth, transformtherml_RGB,
+        dataset = ImageData(dataset_list, data_root, transform_RGB, transformCOD_RGB, transformCOD_RGBV,
+                            transformCOD_video, transformdepth_RGB, transform_depth, transformtherml_RGB,
                             transform_thermal, transformvideo_RGB, transform_video, mode, task)
 
     # data_loader = data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_thread)
