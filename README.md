@@ -11,10 +11,7 @@ We introduce VSCode, a generalist model with novel 2D prompt learning, to jointl
 
 ## 🎃 Environmental Setups
 Pytorch $\geq$ 1.6.0, Torchvision $\geq$ 0.7.0
-```
-conda env create --file environment.yml -n vscode
-conda activate vscode
-```
+
 ## 🎃 Data Preparation
 ### 1. RGB SOD & RGB-D SOD
 For RGB SOD and RGB-D SOD, we employ the following datasets to train our model concurrently: the training set of **DUTS** for `RGB SOD` , the training sets of **NJUD**, **NLPR**, and **DUTLF-Depth** for `RGB-D SOD`. 
