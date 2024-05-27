@@ -18,16 +18,16 @@ For RGB SOD and RGB-D SOD, we employ the following datasets to train our model c
 For testing the RGB SOD task, we use **DUTS**, **ECSSD**, **HKU-IS**, **PASCAL-S**, **DUT-O**, and **SOD**, while **STERE**, **NJUD**, **NLPR**, **DUTLF-Depth**, **SIP**, and **ReDWeb-S** datasets are employed for testing the RGB-D SOD task. You can directly download these datasets by following [[VST]](https://github.com/nnizhang/VST?tab=readme-ov-file).
 
 ### 2. RGB-T SOD
-We employ the training set of **VT5000** to train our model, and **VT821**, **VT1000**, and the testing of **VT5000** are utilized for testing (from [link](https://chenglongli.cn/code-dataset/)). Please download the corresponding contour maps from [[baidu](),PIN:] for VT5000 and place them into the `RGBT` folder.
+We employ the training set of **VT5000** to train our model, and **VT821**, **VT1000**, and the testing of **VT5000** are utilized for testing (from [link](https://chenglongli.cn/code-dataset/)). Please download the corresponding contour maps from [[baidu](https://pan.baidu.com/s/18PVmR-Z2wwVtTZEr14aVJg?pwd=m9ht),PIN:m9ht] for VT5000 and place them into the `RGBT` folder.
 
 ### 3. VSOD
-For VSOD, we employ six widely used benchmark datasets: **DAVIS**, **FBMS**, **ViSal**, **SegV2**, **DAVSOD-Easy**, and **DAVSOD-Normal** (from [link](https://github.com/DengPingFan/DAVSOD)). Please download corresponding contour maps from [[baidu](https://pan.baidu.com/s/1qvIduyt6A8fYlwIQJLj8Jw),PIN:o7r0] and [[baidu[(),PIN:] for DAVIS and DAVSOD, and put it into `Video` folder. For VSOD and VCOD tasks, we follow the common practice of utilizing [Flownet2.0](https://github.com/NVIDIA/flownet2-pytorch) as the optical flow extractor due to its consistently strong performance.
+For VSOD, we employ six widely used benchmark datasets: **DAVIS**, **FBMS**, **ViSal**, **SegV2**, **DAVSOD-Easy**, and **DAVSOD-Normal** (from [link](https://github.com/DengPingFan/DAVSOD)). Please download corresponding contour maps and optical flow from [[baidu](https://pan.baidu.com/s/1hogrUsIEbRIWzicnI7C7Zw?pwd=jyzy),PIN:jyzy] and [[baidu[(https://pan.baidu.com/s/1IUPH8jG-t2ZlK1Acw1W1oA),PIN:bxi7] for DAVIS and DAVSOD, and put it into `Video` folder. For VSOD and VCOD tasks, we follow the common practice of utilizing [Flownet2.0](https://github.com/NVIDIA/flownet2-pytorch) as the optical flow extractor due to its consistently strong performance.
 
 ### 4. RGB COD
-Regarding RGB COD, three extensive benchmark datasets are considered, including [**COD10K**](https://github.com/DengPingFan/SINet/), **CAMO**, and [**NC4K**](https://github.com/JingZhang617/COD-Rank-Localize-and-Segment). Please download the corresponding contour maps from [[baidu](),PIN:] for COD10K and CAMO, and put it into `COD/rgb/` folder.
+Regarding RGB COD, three extensive benchmark datasets are considered, including [**COD10K**](https://github.com/DengPingFan/SINet/), **CAMO**, and [**NC4K**](https://github.com/JingZhang617/COD-Rank-Localize-and-Segment). Please download the corresponding contour maps from [[baidu](https://pan.baidu.com/s/1guTrF3maDesAlG0t0utdGw),PIN:gkq2] and [[baidu](https://pan.baidu.com/s/1QRqqv7IMicudRW0MwnI8FA),PIN:zojp] for COD10K and CAMO, and put it into `COD/rgb/` folder.
 
 ### 5. VCOD
-For VCOD, we utilize two widely accepted benchmark datasets: **CAD** and **MoCA-Mask** (from [link](https://github.com/XuelianCheng/SLT-Net)). Please download the corresponding contour maps from [[baidu](),PIN:] for MoCA-Mask, and put it into `COD/rgbv/` folder.
+For VCOD, we utilize two widely accepted benchmark datasets: **CAD** and **MoCA-Mask** (from [link](https://github.com/XuelianCheng/SLT-Net)). Please download the corresponding contour maps and optical flow from [[baidu](https://pan.baidu.com/s/1RGxO8HQWct9ybVr_CZDtxw),PIN:tjah] for MoCA-Mask, and put it into `COD/rgbv/` folder.
 
 ------
 The total dataset folder should like this:
