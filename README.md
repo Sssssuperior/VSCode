@@ -120,7 +120,7 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 ### 1. Model Zoo
 | Name | Backbone | Params | Weight |
 |  :---: |  :---:    | :---:   |  :---:   |
-| VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/1GpGHG0z8WnzEwxi9HtnONw?pwd=97ij),PIN:97ij]|
+| VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/11jFy0liVMStQdeEtaVxy-A),PIN:mmn1]|
 | VSCode-S |  Swin-S    |  74.72   |  [[baidu](https://pan.baidu.com/s/1OjRFAG7rdiUVwz3nK69Y3g?pwd=8jig),PIN:8jig]|
 | VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]|
 
