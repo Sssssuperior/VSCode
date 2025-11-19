@@ -137,10 +137,12 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 | Name | Backbone | Params | Weight |
 |  :---: |  :---:    | :---:   |  :---:   |
 | VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/11jFy0liVMStQdeEtaVxy-A),PIN:mmn1]/[[Geogle Drive](https://drive.google.com/file/d/1znYlazhiG2vit113MAE5bH5erDf6Ru2_/view?usp=sharing)]|
-| VSCode-S |  Swin-S    |  74.72   |  [[baidu](https://pan.baidu.com/s/1OjRFAG7rdiUVwz3nK69Y3g?pwd=8jig),PIN:8jig]/[[Geogle Drive](https://drive.google.com/file/d/1rqUE7fh5CO34_ypM3gggNM7tdUqeZUxH/view?usp=sharing)|
-| VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]/[[Geogle Drive](https://drive.google.com/file/d/1zKJnH1ZY08L2ul5mPQocbTSHeale6JWE/view?usp=drive_link)|
-| VSCode-v2-T |  Swin-T    |  69.8  |  [[baidu](https://pan.baidu.com/s/1U5vrfw9CFwQevHuOaEA8cg?pwd=8imx),PIN:8imx]|
-| VSCode-v2-S |  Swin-S    |  90.4  |  [[baidu],PIN:]|
+| VSCode-S |  Swin-S    |  74.72   |  [[baidu](https://pan.baidu.com/s/1OjRFAG7rdiUVwz3nK69Y3g?pwd=8jig),PIN:8jig]/[[Geogle Drive](https://drive.google.com/file/d/1rqUE7fh5CO34_ypM3gggNM7tdUqeZUxH/view?usp=sharing)]|
+| VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]/[[Geogle Drive](https://drive.google.com/file/d/1zKJnH1ZY08L2ul5mPQocbTSHeale6JWE/view?usp=drive_link)]|
+| VSCode-v2-T(stage1) |  Swin-T    |  69.8  |  [[baidu](https://pan.baidu.com/s/1OOKz9YRYlhceCGFO4a4Jyg?pwd=wexs),PIN:wexs]|
+| VSCode-v2-S(stage1) |  Swin-S    |  90.4  |  [[baidu](https://pan.baidu.com/s/1nGR29uUKQU2wURebSF9LDA?pwd=gnma),PIN:gnma]|
+| VSCode-v2-T(stage2) |  Swin-T    |  69.8  |  [[baidu](https://pan.baidu.com/s/1U5vrfw9CFwQevHuOaEA8cg?pwd=8imx),PIN:8imx]|
+| VSCode-v2-S(stage2) |  Swin-S    |  90.4  |  [[baidu](https://pan.baidu.com/s/1T6l3UL7yQvtnDRs40quKwQ?pwd=4r7b),PIN:4r7b]|
 
 
 ### 2. Prediction Maps
