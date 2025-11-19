@@ -1,13 +1,22 @@
-# [CVPR 2024] VSCode: General Visual Salient and Camouflaged Object Detection with 2D Prompt Learning
+# [CVPR 2024] VSCode: General Visual Salient and Camouflaged Object Detection with 2D Prompt Learning & VSCode-v2: Dynamic Prompt Learning for General Visual Salient and Camouflaged Object Detection with Two-Stage Optimization
 Ziyang Luo, Nian Liu, Wangbo Zhao, Xuguang Yang, Dingwen Zhang, Deng-Ping Fan, Fahad Khan, Junwei Han<br />
 
 **Approach**: [[arxiv Paper]](https://arxiv.org/pdf/2311.15011.pdf)
 
 <img src="https://github.com/Sssssuperior/VSCode/blob/main/task_relation.png" width="400"/><img src="https://github.com/Sssssuperior/VSCode/blob/main/network.png" width="400"/>
 
+## 🔥 News 
+The extension work of VSCode has been accepted by TPAMI. The codes, models, and results can be found in this repository. The final, camera-ready TPAMI version of the paper will be provided soon. 
+
 ## 🎃 Overview
-We introduce VSCode, a generalist model with novel 2D prompt learning, to jointly address four SOD tasks and three COD tasks. We utilize VST as the foundation model and introduce 2D prompts within the encoder-decoder architecture to learn domain and task-specific knowledge on two separate dimensions. A prompt discrimination loss helps disentangle peculiarities to benefit model optimization. VSCode outperforms state-of-the-art methods across six tasks on 26 datasets and exhibits zero-shot generalization to unseen tasks by combining 2D prompts, such as RGB-D COD.
+**[VSCode]** We introduce VSCode, a generalist model with novel 2D prompt learning, to jointly address four SOD tasks and three COD tasks. We utilize VST as the foundation model and introduce 2D prompts within the encoder-decoder architecture to learn domain and task-specific knowledge on two separate dimensions. A prompt discrimination loss helps disentangle peculiarities to benefit model optimization. VSCode outperforms state-of-the-art methods across six tasks on 26 datasets and exhibits zero-shot generalization to unseen tasks by combining 2D prompts, such as RGB-D COD.
+
+**[VSCode-v2]** Salient object detection (SOD) and camouflaged object detection (COD) are related but distinct binary mapping tasks, each involving multiple modalities that share commonalities while maintaining unique characteristics. Existing approaches often rely on complex, task-specific architectures, leading to redundancy and limited generalization. Our previous work, VSCode, introduced a generalist model that effectively handles four SOD tasks and two COD tasks. VSCode leveraged VST as its foundation model and incorporated 2D prompts within an encoder-decoder framework to capture domain and task-specific knowledge, utilizing a prompt discrimination loss to optimize the model. Building upon the proven effectiveness of our previous work VSCode, we identify opportunities to further strengthen generalization capabilities through focused modifications in model design and optimization strategy. To unlock this potential, we propose VSCode-v2, an extension that introduces a Mixture of Prompt Experts (MoPE) layer to generate adaptive prompts. We also redesign the training process into a two stage approach: first learning shared features across tasks, then capturing specific characteristics. To preserve knowledge during this process, we incorporate distillation from our conference version model. Furthermore, we propose a contrastive learning
+mechanism with data augmentation to strengthen the relationships between prompts and feature representations. VSCode-v2 demonstrates balanced performance improvements across six SOD and COD tasks. Moreover, VSCode-v2 effectively handles various multimodal inputs and exhibits zero-shot generalization
+capability to novel tasks, such as RGB-D Video SOD.
+
 <img src="https://github.com/Sssssuperior/VSCode/blob/main/method.png">
+
 
 ## 🎃 Environmental Setups
 Pytorch $\geq$ 1.6.0, Torchvision $\geq$ 0.7.0
@@ -110,6 +119,10 @@ The total dataset folder should like this:
 ...
 ```
 
+### 6. Augmentation Dataset
+For VSCode-v2, we introduce concatenate augmentation data for contrastive loss. We are reconmand the readers also generate the dataset by their way. Here, we list the dataset that our generate, including **RGB_pseudo** [[baidu](),PIN:], **RGBD_pseudo** [[baidu](),PIN:], **RGBT_pseudo** [[baidu](),PIN:], **RGBV_pseudo** [[baidu](),PIN:], and **CODRGBV_pseudo** [[baidu](),PIN:].
+
+
 ## 🎃 Experiments
 Run `python train_test_eval.py --Training True --Testing True --Evaluation True` for training, testing, and evaluation which is similar to VST.
 
@@ -123,17 +136,21 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 | VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/11jFy0liVMStQdeEtaVxy-A),PIN:mmn1]/[[Geogle Drive](https://drive.google.com/file/d/1znYlazhiG2vit113MAE5bH5erDf6Ru2_/view?usp=sharing)]|
 | VSCode-S |  Swin-S    |  74.72   |  [[baidu](https://pan.baidu.com/s/1OjRFAG7rdiUVwz3nK69Y3g?pwd=8jig),PIN:8jig]/[[Geogle Drive](https://drive.google.com/file/d/1rqUE7fh5CO34_ypM3gggNM7tdUqeZUxH/view?usp=sharing)|
 | VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]/[[Geogle Drive](https://drive.google.com/file/d/1zKJnH1ZY08L2ul5mPQocbTSHeale6JWE/view?usp=drive_link)|
+| VSCode-v2-T |  Swin-T    |  69.8  |  [[baidu],PIN:]/[[Geogle Drive]()|
+| VSCode-v2-S |  Swin-S    |  90.4  |  [[baidu],PIN:]/[[Geogle Drive]()|
+
 
 ### 2. Prediction Maps
-We offer the prediction maps of **VSCode-T** [[baidu](https://pan.baidu.com/s/13MKOObYH6afYzF7P-2vjeQ),PIN:gsvf]/ [[Geogle Drive](https://drive.google.com/file/d/1paABoJ_Tx4uV1XAw6o-QE05b-c1M4o3V/view?usp=drive_link)] , **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5]/[[Geogle Drive](https://drive.google.com/file/d/1uZfzCePoRXgqQso80mR0bCFH2_7dZ1g_/view?usp=drive_link)], and **VSCode-B** [[baidu](https://pan.baidu.com/s/1M1TsyvzPriCFyY8-QlWbjA),PIN:uldc]/[[Geogle Drive](https://drive.google.com/file/d/1vu_mu93p2rczLzvq4yx29lneCc0t_wOz/view?usp=sharing)] at this time.
+We offer the prediction maps of **VSCode-T** [[baidu](https://pan.baidu.com/s/13MKOObYH6afYzF7P-2vjeQ),PIN:gsvf]/ [[Geogle Drive](https://drive.google.com/file/d/1paABoJ_Tx4uV1XAw6o-QE05b-c1M4o3V/view?usp=drive_link)] , **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5]/[[Geogle Drive](https://drive.google.com/file/d/1uZfzCePoRXgqQso80mR0bCFH2_7dZ1g_/view?usp=drive_link)], **VSCode-B** [[baidu](https://pan.baidu.com/s/1M1TsyvzPriCFyY8-QlWbjA),PIN:uldc]/[[Geogle Drive](https://drive.google.com/file/d/1vu_mu93p2rczLzvq4yx29lneCc0t_wOz/view?usp=sharing)], **VSCode-v2-T** [[baidu](),PIN:]/ [[Geogle Drive]()] , **VSCode-v2-S** [[baidu](),PIN:]/[[Geogle Drive]()] at this time.
 
 ## 🎃 Citation
-If you use VSCode in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
+If you use VSCode or VSCode-v2 in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
 ```
-@article{luo2023vscode,
-  title={VSCode: General Visual Salient and Camouflaged Object Detection with 2D Prompt Learning},
+@inproceedings{luo2024vscode,
+  title={Vscode: General visual salient and camouflaged object detection with 2d prompt learning},
   author={Luo, Ziyang and Liu, Nian and Zhao, Wangbo and Yang, Xuguang and Zhang, Dingwen and Fan, Deng-Ping and Khan, Fahad and Han, Junwei},
-  journal={arXiv preprint arXiv:2311.15011},
-  year={2023}
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={17169--17180},
+  year={2024}
 }
 ```
