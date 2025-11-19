@@ -121,7 +121,7 @@ The total dataset folder should like this:
 ```
 
 ### 6. Augmentation Dataset
-For VSCode-v2, we introduce concatenate augmentation data for contrastive loss. We are reconmand the readers also generate the dataset by their way. Here, we list the dataset that our generate, including **RGB_pseudo** [[baidu](),PIN:], **RGBD_pseudo** [[baidu](),PIN:], **RGBT_pseudo** [[baidu](),PIN:], **RGBV_pseudo** [[baidu](),PIN:], and **CODRGBV_pseudo** [[baidu](),PIN:].
+For VSCode-v2, we introduce concatenated augmentation data for the contrastive loss. We recommend that readers generate their own datasets as well. For reference, we list the datasets we generated, including **RGB_pseudo** [[baidu](),PIN:], **RGBD_pseudo** [[baidu](),PIN:], **RGBT_pseudo** [[baidu](),PIN:], **RGBV_pseudo** [[baidu](),PIN:], **CODRGB_pseudo** [[baidu](),PIN:] and **CODRGBV_pseudo** [[baidu](),PIN:].
 
 
 ## 🎃 Experiments
@@ -137,8 +137,9 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 | VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/11jFy0liVMStQdeEtaVxy-A),PIN:mmn1]/[[Geogle Drive](https://drive.google.com/file/d/1znYlazhiG2vit113MAE5bH5erDf6Ru2_/view?usp=sharing)]|
 | VSCode-S |  Swin-S    |  74.72   |  [[baidu](https://pan.baidu.com/s/1OjRFAG7rdiUVwz3nK69Y3g?pwd=8jig),PIN:8jig]/[[Geogle Drive](https://drive.google.com/file/d/1rqUE7fh5CO34_ypM3gggNM7tdUqeZUxH/view?usp=sharing)|
 | VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]/[[Geogle Drive](https://drive.google.com/file/d/1zKJnH1ZY08L2ul5mPQocbTSHeale6JWE/view?usp=drive_link)|
-| VSCode-v2-T |  Swin-T    |  69.8  |  [[baidu],PIN:]/[[Geogle Drive]()|
-| VSCode-v2-S |  Swin-S    |  90.4  |  [[baidu],PIN:]/[[Geogle Drive]()|
+| VSCode-v2-T |  Swin-T    |  69.8  |  [[baidu](https://pan.baidu.com/s/1U5vrfw9CFwQevHuOaEA8cg?pwd=8imx),PIN:8imx]|
+| VSCode-v2-S |  Swin-S    |  90.4  |  [[baidu],PIN:]|
+**Due to the limited storage capacity of my Google Drive, I am unable to upload additional files there. If you can only access the data via Google Drive and are unable to use Baidu Cloud, please contact me by email. (ziyangluo1110@gmail.com).**
 
 
 ### 2. Prediction Maps
