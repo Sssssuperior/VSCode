@@ -123,7 +123,7 @@ The total dataset folder should like this:
 ```
 
 ### 6. Augmentation Dataset
-For VSCode-v2, we introduce concatenated augmentation data for the contrastive loss. We recommend that readers generate their own datasets as well. For reference, we list the datasets we generated, including **RGB_pseudo** [[baidu](),PIN:], **RGBD_pseudo** [[baidu](),PIN:], **RGBT_pseudo** [[baidu](),PIN:], **RGBV_pseudo** [[baidu](),PIN:], **CODRGB_pseudo** [[baidu](),PIN:] and **CODRGBV_pseudo** [[baidu](),PIN:].
+For VSCode-v2, we introduce concatenated augmentation data for the contrastive loss. We recommend that readers generate their own datasets as well. For reference, we list the datasets we generated, including **RGB_pseudo** [[baidu](https://pan.baidu.com/s/1s22_s_6mov7MlBVDIPfwjg?pwd=j7q5),PIN:j7q5], **RGBD_pseudo** [[baidu](https://pan.baidu.com/s/1IXDWtF3-TSbwb2OtDon3AQ?pwd=3k1p),PIN:3k1p], **RGBT_pseudo** [[baidu](https://pan.baidu.com/s/1-_sYGUu_ZiItt76R0aGHlw?pwd=kj8b),PIN:kj8b], **RGBV_pseudo** [[baidu](https://pan.baidu.com/s/1XgKMjj_Rdnj8ZVQQIsp22A?pwd=kprh),PIN:kprh], **CODRGB_pseudo** [[baidu](https://pan.baidu.com/s/1T3iMZvXiMbDg1__z-S7Qfg?pwd=2if2),PIN:2if2] and **CODRGBV_pseudo** [[baidu](https://pan.baidu.com/s/1t7HqlWR_caOeaT8Hhe4KZw?pwd=di5c),PIN:di5c].
 
 
 ## 🎃 Experiments
@@ -132,9 +132,8 @@ Run `python train_test_eval.py --Training True --Testing True --Evaluation True`
 Please be aware that our evaluation tool may exhibit some differences from [Zhao Zhang](https://github.com/zzhanghub/eval-co-sod) for VSOD, as certain ground truth maps may not be binarized. 
 
 ## 🎃 Results
-
-### 1. Model Zoo
 **Due to the limited storage capacity of my Google Drive, I am unable to upload additional files there. If you can only access the data via Google Drive and are unable to use Baidu Cloud, please contact me by email. (ziyangluo1110@gmail.com).**
+### 1. Model Zoo
 | Name | Backbone | Params | Weight |
 |  :---: |  :---:    | :---:   |  :---:   |
 | VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/11jFy0liVMStQdeEtaVxy-A),PIN:mmn1]/[[Geogle Drive](https://drive.google.com/file/d/1znYlazhiG2vit113MAE5bH5erDf6Ru2_/view?usp=sharing)]|
@@ -145,7 +144,7 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 
 
 ### 2. Prediction Maps
-We offer the prediction maps of **VSCode-T** [[baidu](https://pan.baidu.com/s/13MKOObYH6afYzF7P-2vjeQ),PIN:gsvf]/ [[Geogle Drive](https://drive.google.com/file/d/1paABoJ_Tx4uV1XAw6o-QE05b-c1M4o3V/view?usp=drive_link)] , **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5]/[[Geogle Drive](https://drive.google.com/file/d/1uZfzCePoRXgqQso80mR0bCFH2_7dZ1g_/view?usp=drive_link)], **VSCode-B** [[baidu](https://pan.baidu.com/s/1M1TsyvzPriCFyY8-QlWbjA),PIN:uldc]/[[Geogle Drive](https://drive.google.com/file/d/1vu_mu93p2rczLzvq4yx29lneCc0t_wOz/view?usp=sharing)], **VSCode-v2-T** [[baidu](),PIN:]/ [[Geogle Drive]()] , **VSCode-v2-S** [[baidu](),PIN:]/[[Geogle Drive]()] at this time.
+We offer the prediction maps of **VSCode-T** [[baidu](https://pan.baidu.com/s/13MKOObYH6afYzF7P-2vjeQ),PIN:gsvf]/ [[Geogle Drive](https://drive.google.com/file/d/1paABoJ_Tx4uV1XAw6o-QE05b-c1M4o3V/view?usp=drive_link)] , **VSCode-S** [[baidu](https://pan.baidu.com/s/19PwWRsS8woYrlJnoS2A2zA),PIN:ohf5]/[[Geogle Drive](https://drive.google.com/file/d/1uZfzCePoRXgqQso80mR0bCFH2_7dZ1g_/view?usp=drive_link)], **VSCode-B** [[baidu](https://pan.baidu.com/s/1M1TsyvzPriCFyY8-QlWbjA),PIN:uldc]/[[Geogle Drive](https://drive.google.com/file/d/1vu_mu93p2rczLzvq4yx29lneCc0t_wOz/view?usp=sharing)], **VSCode-v2-T** [[baidu](https://pan.baidu.com/s/1lVkHvV1BcFP_0iQ_-0acVQ?pwd=x787),PIN:x787]] , **VSCode-v2-S** [[baidu](),PIN:]] at this time.
 
 ## 🎃 Citation
 If you use VSCode or VSCode-v2 in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
