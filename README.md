@@ -12,11 +12,13 @@ The VSCode-v2 implementation is located in the **VSCode2 folder**, which contain
 ## 🎃 Overview
 **[VSCode]** We introduce VSCode, a generalist model with novel 2D prompt learning, to jointly address four SOD tasks and three COD tasks. We utilize VST as the foundation model and introduce 2D prompts within the encoder-decoder architecture to learn domain and task-specific knowledge on two separate dimensions. A prompt discrimination loss helps disentangle peculiarities to benefit model optimization. VSCode outperforms state-of-the-art methods across six tasks on 26 datasets and exhibits zero-shot generalization to unseen tasks by combining 2D prompts, such as RGB-D COD.
 
+<img src="https://github.com/Sssssuperior/VSCode/blob/main/method.png">
+
 **[VSCode-v2]** Salient object detection (SOD) and camouflaged object detection (COD) are related but distinct binary mapping tasks, each involving multiple modalities that share commonalities while maintaining unique characteristics. Existing approaches often rely on complex, task-specific architectures, leading to redundancy and limited generalization. Our previous work, VSCode, introduced a generalist model that effectively handles four SOD tasks and two COD tasks. VSCode leveraged VST as its foundation model and incorporated 2D prompts within an encoder-decoder framework to capture domain and task-specific knowledge, utilizing a prompt discrimination loss to optimize the model. Building upon the proven effectiveness of our previous work VSCode, we identify opportunities to further strengthen generalization capabilities through focused modifications in model design and optimization strategy. To unlock this potential, we propose VSCode-v2, an extension that introduces a Mixture of Prompt Experts (MoPE) layer to generate adaptive prompts. We also redesign the training process into a two stage approach: first learning shared features across tasks, then capturing specific characteristics. To preserve knowledge during this process, we incorporate distillation from our conference version model. Furthermore, we propose a contrastive learning
 mechanism with data augmentation to strengthen the relationships between prompts and feature representations. VSCode-v2 demonstrates balanced performance improvements across six SOD and COD tasks. Moreover, VSCode-v2 effectively handles various multimodal inputs and exhibits zero-shot generalization
 capability to novel tasks, such as RGB-D Video SOD.
 
-<img src="https://github.com/Sssssuperior/VSCode/blob/main/method.png">
+<img src="https://github.com/Sssssuperior/VSCode/blob/main/vscode-v2-backbone.png">
 
 
 ## 🎃 Environmental Setups
