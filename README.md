@@ -7,6 +7,7 @@ Ziyang Luo, Nian Liu, Wangbo Zhao, Xuguang Yang, Dingwen Zhang, Deng-Ping Fan, F
 
 ## 🔥 News 
 The extension work of VSCode has been accepted by TPAMI. The codes, models, and results can be found in this repository. The final, camera-ready TPAMI version of the paper will be provided soon. 
+The VSCode-v2 implementation is located in the **VSCode2 folder**, which contains all training, testing, and evaluation code.
 
 ## 🎃 Overview
 **[VSCode]** We introduce VSCode, a generalist model with novel 2D prompt learning, to jointly address four SOD tasks and three COD tasks. We utilize VST as the foundation model and introduce 2D prompts within the encoder-decoder architecture to learn domain and task-specific knowledge on two separate dimensions. A prompt discrimination loss helps disentangle peculiarities to benefit model optimization. VSCode outperforms state-of-the-art methods across six tasks on 26 datasets and exhibits zero-shot generalization to unseen tasks by combining 2D prompts, such as RGB-D COD.
