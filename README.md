@@ -132,6 +132,7 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 ## 🎃 Results
 
 ### 1. Model Zoo
+**Due to the limited storage capacity of my Google Drive, I am unable to upload additional files there. If you can only access the data via Google Drive and are unable to use Baidu Cloud, please contact me by email. (ziyangluo1110@gmail.com).**
 | Name | Backbone | Params | Weight |
 |  :---: |  :---:    | :---:   |  :---:   |
 | VSCode-T |  Swin-T    |  54.09   |  [[baidu](https://pan.baidu.com/s/11jFy0liVMStQdeEtaVxy-A),PIN:mmn1]/[[Geogle Drive](https://drive.google.com/file/d/1znYlazhiG2vit113MAE5bH5erDf6Ru2_/view?usp=sharing)]|
@@ -139,7 +140,6 @@ Please be aware that our evaluation tool may exhibit some differences from [Zhao
 | VSCode-B |  Swin-B    |  117.41  |  [[baidu](https://pan.baidu.com/s/1jbo7eu8YEE9I7KI4GqM9Rg?pwd=kidl),PIN:kidl]/[[Geogle Drive](https://drive.google.com/file/d/1zKJnH1ZY08L2ul5mPQocbTSHeale6JWE/view?usp=drive_link)|
 | VSCode-v2-T |  Swin-T    |  69.8  |  [[baidu](https://pan.baidu.com/s/1U5vrfw9CFwQevHuOaEA8cg?pwd=8imx),PIN:8imx]|
 | VSCode-v2-S |  Swin-S    |  90.4  |  [[baidu],PIN:]|
-**Due to the limited storage capacity of my Google Drive, I am unable to upload additional files there. If you can only access the data via Google Drive and are unable to use Baidu Cloud, please contact me by email. (ziyangluo1110@gmail.com).**
 
 
 ### 2. Prediction Maps
