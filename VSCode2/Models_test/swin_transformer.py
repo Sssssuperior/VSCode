@@ -496,7 +496,7 @@ class SwinTransformer(nn.Module):
                 prompt1 =  topk_values_t[k2,:,0].repeat(1,1,num[i]).flatten(1)
                 prompt2 = topk_values_t[k2,:,1].repeat(1,1,num[i]).flatten(1)
                 # skwed_softmax += torch.abs(prompt1-prompt2)
-                task_prompt_tmp = (prompt1.unsqueeze(-1) * selected_linears[0][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0) + (prompt2.unsqueeze(-1) * selected_linears[0][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0)
+                task_prompt_tmp = (prompt1.unsqueeze(-1) * selected_linears[0][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0) + (prompt2.unsqueeze(-1) * selected_linears[1][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0)
                 task_prompt_specific.append(task_prompt_tmp)
             task_prompt_specific = torch.cat(task_prompt_specific, dim=0)
 
@@ -529,7 +529,7 @@ class SwinTransformer(nn.Module):
                     prompt1 =  topk_values_t[k2,:,0].repeat(1,1,num[i]).flatten(1)
                     prompt2 = topk_values_t[k2,:,1].repeat(1,1,num[i]).flatten(1)
                     # skwed_softmax += torch.abs(prompt1-prompt2)
-                    task_prompt_tmp = (prompt1.unsqueeze(-1) * selected_linears[0][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0) + (prompt2.unsqueeze(-1) * selected_linears[0][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0)
+                    task_prompt_tmp = (prompt1.unsqueeze(-1) * selected_linears[0][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0) + (prompt2.unsqueeze(-1) * selected_linears[1][i](torch.stack([p.data for p in task_prompt[i]]))).sum(0)
                     task_prompt_specific.append(task_prompt_tmp)
                 task_prompt_specific = torch.cat(task_prompt_specific, dim=0)
 
